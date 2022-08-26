@@ -11,8 +11,8 @@ let currentTime = controls.querySelector(".currentTime");
 let videoTime = controls.querySelector(".videoTime");
 let timeBar = controls.querySelector(".controls__progressbar-current");
 let volumeBar = document.querySelector("#volume_bar");
-
 let volumeProgress = document.querySelector(".volume__progress");
+
 media.volume = 0.5;
 //
 media.addEventListener("timeupdate", function() {
@@ -52,6 +52,31 @@ volumeIcon.addEventListener("click", function() {
 volumeBar.addEventListener("input", function() {
     media.volume = this.value / 100;
     this.style = `linear-gradient(90deg, rgba(230, 126, 34, 1) ${this.value}%, #e1e1e1 50%)`;
+});
+
+fullscreen.addEventListener("click", function() {
+    console.log(document.fullscreenElement);
+    if (!document.fullscreenElement) {
+        if (playerArea.requestFullscreen) {
+            playerArea.requestFullscreen();
+        } else if (playerArea.mozFullScreenElement) {
+            playerArea.mozFullScreenElement();
+        } else if (playerArea.msFullscreenElement) {
+            playerArea.msFullscreenElement();
+        } else if (playerArea.webkitFullscreenElement) {
+            playerArea.webkitFullscreenElement();
+        }
+    } else {
+        if (document.exitFullscreen) {
+            document.exitFullscreen();
+        } else if (document.mozCancelFullscreen) {
+            document.mozCancelFullscreen();
+        } else if (document.msCancelFullscreen) {
+            document.msCancelFullscreen();
+        } else if (document.webkitCancelFullscreen) {
+            document.webkitCancelFullscreen();
+        }
+    }
 });
 
 function togglePlayIcon() {
