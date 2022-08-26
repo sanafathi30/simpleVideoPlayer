@@ -69,14 +69,14 @@ body {
 
 .myplayer .controls__progressbar-current::-webkit-slider-thumb {
     -webkit-appearance: none !important;
-    background-color: transparent;
+    background-color: red;
     height: 13px;
     width: 13px;
 }
 
 .volume__progress .controls__progressbar-current::-moz-range-thumb {
     -moz-appearance: none !important;
-    background-color: transparent;
+    background-color: red;
     border: none;
     height: 13px;
     width: 13px;

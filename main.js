@@ -9,14 +9,17 @@ let fullscreen = controls.querySelector(".fullscreen");
 let volume = controls.querySelector(".volume i");
 let currentTime = controls.querySelector(".currentTime");
 let videoTime = controls.querySelector(".videoTime");
+let timeBar = controls.querySelector(".controls__progressbar-current");
 
 //
 media.addEventListener("timeupdate", function() {
-    let min = Math.floor(media.currentTime / 60);
-    let sec = Math.floor(media.currentTime - min * 60);
-    min = min < 10 ? `0${min}` : min;
-    sec = sec < 10 ? `0${sec}` : sec;
-    currentTime.textContent = `${min}:${sec}`;
+    getCurrentTime();
+
+    let barlength = Math.floor((media.currentTime / media.duration) * 100);
+
+    timeBar.value = `${barlength}`;
+
+    timeBar.style = ` backgroundColor : linear-gradient(90deg, rgba(230, 126, 34, 1) ${barlength}%, #e1e1e1 0%)`;
 });
 
 play.addEventListener("click", function() {
@@ -42,6 +45,14 @@ function togglePlayIcon() {
     let icon = controls.querySelector(".play i");
     icon.classList.toggle("ion-md-pause");
     icon.classList.toggle("ion-md-play");
+}
+
+function getCurrentTime() {
+    let min = Math.floor(media.currentTime / 60);
+    let sec = Math.floor(media.currentTime - min * 60);
+    min = min < 10 ? `0${min}` : min;
+    sec = sec < 10 ? `0${sec}` : sec;
+    currentTime.textContent = `${min}:${sec}`;
 }
 
 function getvideoTime() {
