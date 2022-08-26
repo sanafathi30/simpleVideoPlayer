@@ -6,19 +6,19 @@ let play = controls.querySelector(".play");
 let rewind = controls.querySelector(".rewind");
 let forward = controls.querySelector(".forward");
 let fullscreen = controls.querySelector(".fullscreen");
-let volume = controls.querySelector(".volume i");
+let volumeIcon = controls.querySelector(".volume i");
 let currentTime = controls.querySelector(".currentTime");
 let videoTime = controls.querySelector(".videoTime");
 let timeBar = controls.querySelector(".controls__progressbar-current");
+let volumeBar = document.querySelector("#volume_bar");
 
+let volumeProgress = document.querySelector(".volume__progress");
+media.volume = 0.5;
 //
 media.addEventListener("timeupdate", function() {
     getCurrentTime();
-
     let barlength = Math.floor((media.currentTime / media.duration) * 100);
-
     timeBar.value = `${barlength}`;
-
     timeBar.style = ` backgroundColor : linear-gradient(90deg, rgba(230, 126, 34, 1) ${barlength}%, #e1e1e1 0%)`;
 });
 
@@ -39,6 +39,19 @@ rewind.addEventListener("click", function() {
 
 forward.addEventListener("click", function() {
     media.currentTime = media.currentTime + 5;
+});
+
+timeBar.addEventListener("input", function() {
+    media.currentTime = Math.floor((this.value / 100) * media.duration);
+});
+
+volumeIcon.addEventListener("click", function() {
+    volumeProgress.classList.toggle("active");
+});
+
+volumeBar.addEventListener("input", function() {
+    media.volume = this.value / 100;
+    this.style = `linear-gradient(90deg, rgba(230, 126, 34, 1) ${this.value}%, #e1e1e1 50%)`;
 });
 
 function togglePlayIcon() {

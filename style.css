@@ -131,6 +131,10 @@ body {
     display: none;
 }
 
+.active {
+    display: block;
+}
+
 .myplayer .volume__progress.active {
     display: block;
 }
@@ -153,7 +157,7 @@ body {
     border-radius: 6px;
     height: 6px;
     width: 77px;
-    background: linear-gradient(90deg, rgba(230, 126, 34, 1) 50%, #e1e1e1 50%);
+    background: linear-gradient(90deg, rgba(230, 126, 34, 1) 0%, #e1e1e1 0%);
 }
 
 .volume__progress input[type="range"]::-moz-range-track {
